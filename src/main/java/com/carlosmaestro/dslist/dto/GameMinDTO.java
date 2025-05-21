@@ -1,6 +1,7 @@
 package com.carlosmaestro.dslist.dto;
 
 import com.carlosmaestro.dslist.entities.Game;
+import com.carlosmaestro.dslist.projections.GameMinProjection;
 
 public class GameMinDTO {
     private Long id;
@@ -14,12 +15,19 @@ public class GameMinDTO {
 
     }
 
-    public GameMinDTO(Game entitie){
-        id = entitie.getId();
-        title = entitie.getTitle();
-        year = entitie.getYear();
-        imgUrl = entitie.getImgUrl();
-        shortDescription = entitie.getShortDescription();
+    public GameMinDTO(Game entity){
+        id = entity.getId();
+        title = entity.getTitle();
+        year = entity.getYear();
+        imgUrl = entity.getImgUrl();
+        shortDescription = entity.getShortDescription();
+    }
+    public GameMinDTO(GameMinProjection gameMinProjection){
+        id = gameMinProjection.getId();
+        title = gameMinProjection.getTitle();
+        year = gameMinProjection.getYear();
+        imgUrl = gameMinProjection.getImgUrl();
+        shortDescription = gameMinProjection.getShortDescription();
     }
 
     public Long getId() {

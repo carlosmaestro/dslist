@@ -2,7 +2,6 @@ package com.carlosmaestro.dslist.services;
 
 import com.carlosmaestro.dslist.dto.GameDTO;
 import com.carlosmaestro.dslist.dto.GameMinDTO;
-import com.carlosmaestro.dslist.entities.Game;
 import com.carlosmaestro.dslist.exceptions.RecordNotFoundException;
 import com.carlosmaestro.dslist.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +24,10 @@ public class GameService {
     @Transactional(readOnly = true)
     public GameDTO findById(Long id) {
         return gameRepository.findById(id).map(GameDTO::new).orElseThrow(()-> new RecordNotFoundException(id));
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(Long id) {
+        return gameRepository.searchByList(id).stream().map(GameMinDTO::new).toList();
     }
 }
